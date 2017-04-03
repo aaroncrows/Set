@@ -11,11 +11,12 @@ class Deck {
 
   static get patterns() {
     return [...PATTERNS]
-  }
+    }
 
   static get colors() {
     return [...COLORS]
   }
+
   generateDeck() {
     const cards = []
 
@@ -35,6 +36,21 @@ class Deck {
 
       return [...deck, ...cardsByPattern]
     }, [])
+  }
+
+  shuffle() {
+    const swap = (a, b) => {
+      const temp = this.cards[a]
+      this.cards[a] = this.cards[b]
+      this.cards[b] = temp
+    }
+
+    let randomIndex
+    this.cards.forEach((_, i) => {
+      randomIndex = Math.floor(Math.random() * this.cards.length)
+
+      swap(i, randomIndex)
+    })
   }
 }
 

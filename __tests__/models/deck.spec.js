@@ -25,3 +25,14 @@ test('should generate a set of unique cards', () => {
     seen[cardString] = true
   })
 })
+
+test('should shuffle the deck', () => {
+  testDeck.generateDeck()
+
+  const unshuffled = [...testDeck.cards]
+   testDeck.shuffle()
+
+  const isShuffled = testDeck.cards.some((c, i) => unshuffled[i] !== c)
+
+  expect(isShuffled).toBe(true)
+})
