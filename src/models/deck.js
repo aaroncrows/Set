@@ -11,7 +11,7 @@ class Deck {
 
   static get patterns() {
     return [...PATTERNS]
-    }
+  }
 
   static get colors() {
     return [...COLORS]
@@ -37,23 +37,20 @@ class Deck {
   }
 
   generateDeck() {
-    const cards = []
+    this.cards = Deck.shapes.reduce((shapeDeck, shape) => {
+      const cardsByPattern = Deck.patterns.reduce((patternDeck, pattern) => {
+        const cardsByColor = Deck.colors.reduce((colorDeck, color) => {
+          const cardsByCount = [1, 2, 3].map(count => (
+            new Card(shape, pattern, color, count)
+          ))
 
-    this.cards = Deck.shapes.reduce((deck, shape) => {
-        const cardsByPattern = Deck.patterns.reduce((deck, pattern) => {
-          const cardsByColor = Deck.colors.reduce((deck, color) => {
-            const cardsByCount = [1, 2, 3].map(count => {
+          return [...colorDeck, ...cardsByCount]
+        }, [])
 
-              return new Card(shape, pattern, color, count)
-            })
-
-            return [...deck, ...cardsByCount]
-          }, [])
-
-          return [...deck, ...cardsByColor]
+        return [...patternDeck, ...cardsByColor]
       }, [])
 
-      return [...deck, ...cardsByPattern]
+      return [...shapeDeck, ...cardsByPattern]
     }, [])
   }
 

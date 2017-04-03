@@ -36,7 +36,7 @@ test('should generate a set of unique cards', () => {
 test('should shuffle the deck', () => {
   testDeck.generateDeck()
   const unshuffled = [...testDeck.cards]
-   testDeck.shuffle()
+  testDeck.shuffle()
   const isShuffled = testDeck.cards.some((c, i) => unshuffled[i] !== c)
 
   expect(isShuffled).toBe(true)
@@ -52,11 +52,11 @@ test('should detect a valid set with all the same values', () => {
 
 test('should detect a valid set with all unique values', () => {
   const validTestSet = emptySet.map((_, i) => ({
-      shape: `${shape}${i}`,
-      color: `${color}${i}`,
-      count: count + i,
-      pattern: `${pattern}${i}`
-    }))
+    shape: `${shape}${i}`,
+    color: `${color}${i}`,
+    count: count + i,
+    pattern: `${pattern}${i}`
+  }))
 
   expect(Deck.validSet(...validTestSet)).toBe(true)
 })
