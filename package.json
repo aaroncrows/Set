@@ -1,0 +1,13 @@
+{
+  "name": "set_game",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Aaron Krause <aaronjkrause@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "jest": "^19.0.2"
+  }
+}
