@@ -17,6 +17,25 @@ class Deck {
     return [...COLORS]
   }
 
+  static validSet(a, b, c) {
+    const set = [a, b, c]
+    const unique = (arr, prop) => {
+      const seen = {}
+      return arr.every((card) => {
+        if (seen[card[prop]]) return false
+        seen[card[prop]] = true
+        return true
+      })
+    }
+
+    const same = (arr, prop) => arr.every(card => (
+      card[prop] === arr[0][prop]
+    ))
+    const properties = ['shape', 'count', 'pattern', 'color']
+
+    return properties.every(prop => unique(set, prop) || same(set, prop))
+  }
+
   generateDeck() {
     const cards = []
 
