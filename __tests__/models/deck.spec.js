@@ -42,6 +42,14 @@ test('should shuffle the deck', () => {
   expect(isShuffled).toBe(true)
 })
 
+test('should create a board of cards', () => {
+  const testBoard = testDeck.dealBoard()
+  const boardLength = testBoard.reduce((a, c) => a + c.length, 0)
+
+  expect(boardLength).toBe(Deck.boardSize)
+  expect(testBoard.every(row => row.every(c => c instanceof Card))).toBe(true)
+})
+
 test('should detect a valid set with all the same values', () => {
   const validTestSet = emptySet.map(_ => (
     { shape, color, count, pattern }

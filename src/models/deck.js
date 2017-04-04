@@ -17,6 +17,10 @@ class Deck {
     return [...COLORS]
   }
 
+  static get boardSize() {
+    return 12
+  }
+
   static validSet(a, b, c) {
     const set = [a, b, c]
     const unique = (arr, prop) => {
@@ -67,6 +71,24 @@ class Deck {
 
       swap(i, randomIndex)
     })
+  }
+
+  dealBoard() {
+    const rowSize = Deck.boardSize / 3
+    let board = Array(3).fill(null)
+
+    this.generateDeck()
+    this.shuffle()
+
+    board = board.map((_, idx) => {
+      const start = idx * rowSize
+      const end = start + rowSize
+      return this.cards.slice(start, end)
+    })
+
+    this.cards = this.cards.slice(rowSize * 3)
+
+    return board
   }
 }
 
