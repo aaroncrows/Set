@@ -4,10 +4,15 @@ import { createStore } from 'redux'
 import { render } from 'react-dom'
 
 import app from './reducers'
+import Board from './components/board'
 
+import Deck from './models/deck'
 
 const store = createStore(app)
+const Main = () => (
+  <Provider store={store}>
+    <Board />
+  </Provider>
+)
 
-const Main = () => (<Provider store={store} />)
-
-render(<Main />, document.body)
+render(<Main />, document.getElementById('react-root'))
