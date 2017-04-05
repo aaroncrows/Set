@@ -9,6 +9,9 @@
     "build": "./node_modules/webpack/bin/webpack.js",
     "serve": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --history-api-fallback"
   },
+  "jest": {
+    "modulePathIgnorePatterns": ["lib"]
+  },
   "dependencies": {
     "babel-core": "^6.24.0",
     "babel-jest": "^19.0.0",
@@ -22,6 +25,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",
+    "react-test-renderer": "^15.4.2",
     "redux": "^3.6.0",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
