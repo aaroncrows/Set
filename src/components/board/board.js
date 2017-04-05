@@ -1,12 +1,14 @@
 import React from 'react'
 import uid from '../../lib/uid'
 
+import Card from '../card/card'
+
 const Board = ({ board }) => (
   <ul className="board">
     {
       board.map(row => (
         <ul key={uid()}>
-          {row.map(c => <li key={uid()}>{`${c.pattern}${c.color}${c.shape}`}</li>)}
+          {row.map(c => <Card key={uid()} {...c} />)}
         </ul>))
     }
   </ul>
