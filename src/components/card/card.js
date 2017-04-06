@@ -1,9 +1,11 @@
 import React from 'react'
 
-import './card.css'
+import cardToElement from '../../lib/cardToIcon'
 
-const Card = ({pattern, color, count, shape}) => (
-  <li className="card">{`${pattern} ${color} ${count} ${shape}`}</li>
+import './card.scss'
+
+const Card = (card) => (
+  <li className="card">{cardToElement(card)}</li>
 )
 
 export default Card

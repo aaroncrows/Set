@@ -2,7 +2,7 @@ import Card from './card'
 
 const SHAPES = ['oval', 'curve', 'diamond']
 const PATTERNS = ['solid', 'striped', 'empty']
-const COLORS = ['red', 'blue', 'green']
+const COLORS = ['first', 'second', 'third']
 
 class Deck {
   static get shapes() {
