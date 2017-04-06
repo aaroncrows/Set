@@ -5,6 +5,8 @@ import { DEAL_BOARD } from '../../constants'
 
 import Board from './board'
 
+import './board.css'
+
 const mapStateToProps = ({ board }) => ({ board })
 
 const mapDispatchToProps = (dispatch) => ({

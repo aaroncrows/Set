@@ -14,7 +14,6 @@ module.exports = {
     path: paths.build,
     filename: 'bundle.js'
   },
-
   module: {
     rules: [
       {
@@ -30,11 +29,7 @@ module.exports = {
         loader: ExtractTextPlugin.extract({
           use: [
             {
-              loader: 'css-loader',
-              options: {
-                modules: 'true',
-                localIdentName: '[name]__[local]___[hash:base64:5]'
-              }
+              loader: 'css-loader'
             },
             {
               loader: 'sass-loader',
@@ -44,6 +39,18 @@ module.exports = {
             }
           ]
         })
+      },
+      {
+        test: /\.woff(2)?(\?[a-z0-9]+)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10000,
+          mimetype: 'application/font-woff'
+        }
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?[a-z0-9]+)?$/,
+        loader: 'file-loader'
       }
     ]
   },
