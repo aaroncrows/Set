@@ -8,6 +8,7 @@ import Board from '../../src/components/board'
 let testState
 beforeEach(() => {
   testState = {
+    selectedCards: [],
     board: [[{shape: 'testShape', pattern: 'testPattern', color: 'testColor', count: 'testCount'}]]
   }
 })

@@ -5,8 +5,18 @@ exports[`should render correctly 1`] = `
   className="board"
 >
   <ul>
-    <li>
-      testPatterntestColortestShape
+    <li
+      className="card"
+      onClick={[Function]}
+    >
+      <span
+        className="icons-undefined color-testColor icon-undefined"
+      />
+      <span
+        className="pattern"
+      >
+        testPattern
+      </span>
     </li>
   </ul>
 </ul>
