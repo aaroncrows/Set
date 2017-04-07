@@ -1,7 +1,11 @@
 import { connect } from 'react-redux'
 
-import { dealBoard, selectCard } from '../../actions/actions'
-import { DEAL_BOARD } from '../../constants'
+import {
+  dealBoard,
+  toggleSelect,
+  clearSelect,
+  validateSet
+} from '../../actions/actions'
 
 import Board from './board'
 
@@ -13,8 +17,14 @@ const mapDispatchToProps = (dispatch) => ({
   dealBoard() {
     dispatch(dealBoard())
   },
-  selectCard(card) {
-    dispatch(selectCard(card))
+  onCardClick(card) {
+    dispatch(toggleSelect(card))
+  },
+  clearSelect() {
+    dispatch(clearSelect())
+  },
+  validateSet() {
+    dispatch(validateSet())
   }
 })
 

@@ -1,14 +1,30 @@
-import { DEAL_BOARD, SELECT_CARD } from '../constants'
+import {
+  DEAL_BOARD,
+  TOGGLE_SELECT,
+  CLEAR_SELECT,
+  VALIDATE_SET
+} from '../constants'
 
 // Board actions
 const dealBoard = () => (
   { type: DEAL_BOARD }
 )
 
-const selectCard = card => (
-  { type: SELECT_CARD, card }
+const toggleSelect = card => (
+  { type: TOGGLE_SELECT, card }
+)
+
+const clearSelect = () => (
+ { type: CLEAR_SELECT }
+)
+
+
+const validateSet = () => (
+ { type: VALIDATE_SET }
 )
 export {
   dealBoard,
-  selectCard
+  toggleSelect,
+  clearSelect,
+  validateSet
 }

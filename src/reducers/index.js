@@ -1,26 +1,44 @@
-import { TEST_ACTION, SELECT_CARD } from '../constants'
-import Deck from '../models/deck'
+import {
+  CLEAR_SELECT,
+  TOGGLE_SELECT,
+  VALIDATE_SET
+} from '../constants'
+
+import Deck, { validSet } from '../models/deck'
 
 let testDeck = new Deck()
-window.deck = testDeck
+
 const initialState = {
   board: testDeck.dealBoard(),
   rowSize: 4,
   selectedCards: [],
-  greeting: 'tessting'
 }
+
 const app = (state = initialState, action) => {
   switch (action.type) {
-    case TEST_ACTION:
+    case TOGGLE_SELECT:
+      const selected = state.selectedCards
+      const { card } = action
+      const toggleOn = !state.selectedCards.includes(card)
+      const selectedCards = toggleOn ? [...selected, card] : selected.filter(c => c !== card)
       return {
         ...state,
-        greeting: 'YEEEAH'
+        selectedCards
       }
-    case SELECT_CARD:
+
+    case CLEAR_SELECT:
       return {
         ...state,
-        selectedCards: [...state.selectedCards, action.card]
+        selectedCards: []
       }
+
+    case VALIDATE_SET:
+      const isValidSet = Deck.validSet(state.selectedCards)
+      return {
+        ...state,
+        selectedCards: []
+      }
+
     default:
       return state
   }

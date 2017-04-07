@@ -21,8 +21,7 @@ class Deck {
     return 12
   }
 
-  static validSet(a, b, c) {
-    const set = [a, b, c]
+  static validSet(set) {
     const unique = (arr, prop) => {
       const seen = {}
       return arr.every((card) => {

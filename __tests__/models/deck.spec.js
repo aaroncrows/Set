@@ -55,7 +55,7 @@ test('should detect a valid set with all the same values', () => {
     { shape, color, count, pattern }
   ))
 
-  expect(Deck.validSet(...validTestSet)).toBe(true)
+  expect(Deck.validSet(validTestSet)).toBe(true)
 })
 
 test('should detect a valid set with all unique values', () => {
@@ -66,7 +66,7 @@ test('should detect a valid set with all unique values', () => {
     pattern: `${pattern}${i}`
   }))
 
-  expect(Deck.validSet(...validTestSet)).toBe(true)
+  expect(Deck.validSet(validTestSet)).toBe(true)
 })
 
 test('should detect a mixed set', () => {
@@ -74,7 +74,7 @@ test('should detect a mixed set', () => {
     { shape, color, count: count + i, pattern: `${pattern}${i}` }
   ))
 
-  expect(Deck.validSet(...validTestSet)).toBe(true)
+  expect(Deck.validSet(validTestSet)).toBe(true)
 })
 
 test('should detect an invalid set', () => {
@@ -84,6 +84,6 @@ test('should detect an invalid set', () => {
 
   invalidTestSet[2].pattern = 'nottest'
 
-  expect(Deck.validSet(...invalidTestSet)).toBe(false)
+  expect(Deck.validSet(invalidTestSet)).toBe(false)
 })
 
