@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render correctly 1`] = `
+exports[`container render correctly 1`] = `
 <ul
   className="board"
 >
@@ -10,12 +10,12 @@ exports[`should render correctly 1`] = `
       onClick={[Function]}
     >
       <span
-        className="icons-undefined color-testColor icon-undefined"
+        className="icons-one color-one icon-leaf"
       />
       <span
         className="pattern"
       >
-        testPattern
+        solid
       </span>
     </li>
   </ul>
