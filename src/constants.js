@@ -5,3 +5,5 @@ export const TEST_ACTION = 'TEST_ACTION'
 // Deck Actions
 
 export const DEAL_BOARD = 'DEAL_BOARD'
+
+export const SELECT_CARD = 'SELECT_CARD'

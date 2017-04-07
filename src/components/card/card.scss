@@ -7,6 +7,10 @@
   margin: 5px;
   position: relative;
 
+  &.selected {
+    outline: 1px solid yellow;
+  }
+
   span {
     display: block;
     text-align: center;

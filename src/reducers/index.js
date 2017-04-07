@@ -1,4 +1,4 @@
-import { TEST_ACTION } from '../constants'
+import { TEST_ACTION, SELECT_CARD } from '../constants'
 import Deck from '../models/deck'
 
 let testDeck = new Deck()
@@ -6,6 +6,7 @@ window.deck = testDeck
 const initialState = {
   board: testDeck.dealBoard(),
   rowSize: 4,
+  selectedCards: [],
   greeting: 'tessting'
 }
 const app = (state = initialState, action) => {
@@ -14,6 +15,11 @@ const app = (state = initialState, action) => {
       return {
         ...state,
         greeting: 'YEEEAH'
+      }
+    case SELECT_CARD:
+      return {
+        ...state,
+        selectedCards: [...state.selectedCards, action.card]
       }
     default:
       return state

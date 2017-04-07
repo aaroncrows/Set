@@ -9,7 +9,7 @@ const cardToElement = ({ shape, count, pattern, color }) => {
   const spans =  Array(count).fill(null).map(_ => (
     <span className={classString} key={uid()}></span>
   ))
-  spans.push(<span className="pattern">{pattern}</span>)
+  spans.push(<span className="pattern" key={uid()}>{pattern}</span>)
   return spans
 }
 

@@ -1,10 +1,14 @@
-import { DEAL_BOARD } from '../constants'
+import { DEAL_BOARD, SELECT_CARD } from '../constants'
 
 // Board actions
 const dealBoard = () => (
   { type: DEAL_BOARD }
 )
 
-export default {
-  dealBoard
+const selectCard = card => (
+  { type: SELECT_CARD, card }
+)
+export {
+  dealBoard,
+  selectCard
 }
