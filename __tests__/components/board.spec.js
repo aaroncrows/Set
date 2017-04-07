@@ -3,7 +3,7 @@ import { create } from 'react-test-renderer'
 import { Provider } from 'react-redux'
 import mockStore from '../lib/mockStore'
 
-import Board from '../../src/components/board'
+import Board from 'src/components/board'
 
 let testState
 beforeEach(() => {

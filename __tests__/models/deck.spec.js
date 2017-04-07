@@ -1,5 +1,5 @@
-import Deck from '../../src/models/deck'
-import Card from '../../src/models/card'
+import Deck from 'src/models/deck'
+import Card from 'src/models/card'
 
 const shape = 'test'
 const color = 'test'

@@ -16,7 +16,8 @@
     "moduleNameMapper": {
       "\\.s?css$": "identity-obj-proxy"
     },
-    "collectCoverage": true
+    "collectCoverage": true,
+    "modulePaths": ["<rootDir>/"]
   },
   "dependencies": {
     "babel-core": "^6.24.0",
