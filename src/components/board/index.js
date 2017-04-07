@@ -12,7 +12,7 @@ import './board.css'
 
 const mapStateToProps = ({ board, selectedCards }) => ({ board, selectedCards })
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   dealBoard() {
     dispatch(dealBoard())
   },

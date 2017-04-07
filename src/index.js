@@ -6,8 +6,6 @@ import { render } from 'react-dom'
 import app from './reducers'
 import Board from './components/board'
 
-import Deck from './models/deck'
-
 import './global-styles/main.scss'
 
 const store = createStore(app)

@@ -1,12 +1,13 @@
+/* eslint no-case-declarations: 0 */
 import {
   CLEAR_SELECT,
   TOGGLE_SELECT,
   VALIDATE_SET
 } from '../constants'
 
-import Deck, { validSet } from '../models/deck'
+import Deck from '../models/deck'
 
-let testDeck = new Deck()
+const testDeck = new Deck()
 
 const initialState = {
   board: testDeck.dealBoard(),
@@ -33,7 +34,7 @@ const app = (state = initialState, action) => {
       }
 
     case VALIDATE_SET:
-      const isValidSet = Deck.validSet(state.selectedCards)
+      // const isValidSet = Deck.validSet(state.selectedCards)
       return {
         ...state,
         selectedCards: []

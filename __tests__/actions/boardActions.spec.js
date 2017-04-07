@@ -21,7 +21,7 @@ test('dealBoard', () => {
 
 test('toggleSelect', () => {
   const card = { shape: 'test' }
-  const expected = { type: TOGGLE_SELECT, card  }
+  const expected = { type: TOGGLE_SELECT, card }
   const result = toggleSelect(card)
 
   expect(result).toEqual(expected)

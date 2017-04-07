@@ -17,15 +17,15 @@ class Board extends Component {
         board.map(row => (
           <ul key={uid()}>
             {row.map(c => <Card
-                            key={uid()}
-                            card={c}
-                            selected={selectedCards.includes(c)}
-                            onCardClick={onCardClick}
-                          />)}
+              key={uid()}
+              card={c}
+              selected={selectedCards.includes(c)}
+              onCardClick={onCardClick}
+            />)}
           </ul>))
       }
     </ul>
-  )
+    )
   }
 }
 

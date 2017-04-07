@@ -13,7 +13,7 @@ let testState
 beforeEach(() => {
   testState = {
     selectedCards: [],
-    board: [[{shape: 'oval', pattern: 'solid', color: 'one', count: 1 }]]
+    board: [[{ shape: 'oval', pattern: 'solid', color: 'one', count: 1 }]]
   }
 })
 
