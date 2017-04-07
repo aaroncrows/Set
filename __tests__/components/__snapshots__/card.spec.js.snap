@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly 1`] = `
+<li
+  className="card"
+  onClick={[Function]}
+>
+  <span
+    className="icons-one color-first icon-leaf"
+  />
+  <span
+    className="pattern"
+  >
+    solid
+  </span>
+</li>
+`;
