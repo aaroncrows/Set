@@ -87,7 +87,16 @@ class Deck {
 
     this.cards = this.cards.slice(rowSize * 3)
 
+    this.board = board
+
     return board
+  }
+
+  replaceSet(set) {
+    const deck = [...this.cards]
+
+    this.board = this.board.map(row => row.map( card => set.includes(card) ? deck.pop() : card))
+    this.cards = deck
   }
 }
 

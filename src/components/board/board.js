@@ -4,7 +4,6 @@ import uid from '../../lib/uid'
 import Card from '../card/card'
 
 class Board extends Component {
-
   componentWillReceiveProps(newProps) {
     const { selectedCards, validateSet } = newProps
     if (selectedCards.length >= 3) validateSet()

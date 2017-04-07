@@ -11,6 +11,7 @@ const testDeck = new Deck()
 
 const initialState = {
   board: testDeck.dealBoard(),
+  cards: testDeck.cards,
   rowSize: 4,
   selectedCards: [],
 }
@@ -34,9 +35,15 @@ const app = (state = initialState, action) => {
       }
 
     case VALIDATE_SET:
-      // const isValidSet = Deck.validSet(state.selectedCards)
+      const isValidSet = Deck.validSet(state.selectedCards)
+      // deal three new cards
+      if (isValidSet) {
+        testDeck.replaceSet(state.selectedCards)
+      }
       return {
         ...state,
+        board: testDeck.board,
+        cards: testDeck.cards,
         selectedCards: []
       }
 
