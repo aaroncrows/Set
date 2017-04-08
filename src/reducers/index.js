@@ -2,7 +2,8 @@
 import {
   CLEAR_SELECT,
   TOGGLE_SELECT,
-  VALIDATE_SET
+  VALIDATE_SET,
+  DEAL_BOARD
 } from '../constants'
 
 import Deck from '../models/deck'
@@ -10,6 +11,7 @@ import Deck from '../models/deck'
 const testDeck = new Deck()
 
 const initialState = {
+  deck: testDeck,
   board: testDeck.dealBoard(),
   cards: testDeck.cards,
   rowSize: 4,
@@ -17,6 +19,7 @@ const initialState = {
 }
 
 const app = (state = initialState, action) => {
+  console.log(action)
   switch (action.type) {
     case TOGGLE_SELECT:
       const selected = state.selectedCards
@@ -33,6 +36,23 @@ const app = (state = initialState, action) => {
         ...state,
         selectedCards: []
       }
+
+    case 'SYNC_BOARD':
+      return {
+        ...state,
+        selectedCards: action.selected
+      }
+
+    case DEAL_BOARD: {
+      const newDeck = Object.assign(Object.create(Deck.prototype), state.deck)
+      newDeck.cards = action.cards
+
+      return {
+        ...state,
+        cards: newDeck.cards,
+        board: newDeck.dealBoard()
+      }
+    }
 
     case VALIDATE_SET:
       const isValidSet = Deck.validSet(state.selectedCards)

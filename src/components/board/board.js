@@ -8,7 +8,6 @@ class Board extends Component {
     const { selectedCards, validateSet } = newProps
     if (selectedCards.length >= 3) validateSet()
   }
-
   render() {
     const { board, onCardClick, selectedCards } = this.props
     return (<ul className="board">
@@ -18,7 +17,7 @@ class Board extends Component {
             {row.map(c => <Card
               key={uid()}
               card={c}
-              selected={selectedCards.includes(c)}
+              selected={!selectedCards.every(sel => JSON.stringify(sel) !== JSON.stringify(c))}
               onCardClick={onCardClick}
             />)}
           </ul>))

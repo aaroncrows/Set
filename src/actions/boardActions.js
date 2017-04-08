@@ -5,8 +5,8 @@ import {
 } from '../constants'
 
 // Board actions
-const dealBoard = () => (
-  { type: DEAL_BOARD }
+const dealBoard = cards => (
+  { type: DEAL_BOARD, cards }
 )
 
 const toggleSelect = card => (

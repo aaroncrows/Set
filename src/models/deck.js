@@ -72,12 +72,16 @@ class Deck {
     })
   }
 
+  createDeck() {
+    this.generateDeck()
+    this.shuffle()
+  }
+
   dealBoard() {
     const rowSize = Deck.boardSize / 3
     let board = Array(3).fill(null)
 
-    this.generateDeck()
-    this.shuffle()
+    if (!this.cards) this.createDeck()
 
     board = board.map((_, idx) => {
       const start = idx * rowSize
