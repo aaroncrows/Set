@@ -34,6 +34,7 @@ class Deck {
     const same = (arr, prop) => arr.every(card => (
       card[prop] === arr[0][prop]
     ))
+
     const properties = ['shape', 'count', 'pattern', 'color']
 
     return properties.every(prop => unique(set, prop) || same(set, prop))

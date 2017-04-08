@@ -6,6 +6,11 @@ import {
   DEAL_BOARD
 } from '../constants'
 
+import {
+  dealBoard,
+  replaceSet,
+  validSet
+} from '../lib/deckHelpers'
 import Deck from '../models/deck'
 
 const testDeck = new Deck()
@@ -19,7 +24,6 @@ const initialState = {
 }
 
 const app = (state = initialState, action) => {
-  console.log(action)
   switch (action.type) {
     case TOGGLE_SELECT:
       const selected = state.selectedCards
@@ -44,29 +48,33 @@ const app = (state = initialState, action) => {
       }
 
     case DEAL_BOARD: {
-      const newDeck = Object.assign(Object.create(Deck.prototype), state.deck)
-      newDeck.cards = action.cards
-
+      const { deck: cards, board } = dealBoard(action.cards)
       return {
         ...state,
-        deck: newDeck,
-        cards: newDeck.cards,
-        board: newDeck.dealBoard()
+        cards,
+        board
       }
     }
 
-    case VALIDATE_SET:
-      const isValidSet = Deck.validSet(state.selectedCards)
+    case VALIDATE_SET: {
+      const { cards: currentCards, board: currentBoard, selectedCards} = state
+      const isValidSet = validSet(selectedCards)
+      let replaced
       // deal three new cards
       if (isValidSet) {
-        state.deck.replaceSet(state.selectedCards)
+          replaced = replaceSet(currentCards, currentBoard, selectedCards)
+      } else {
+        replaced = {board: currentBoard, deck: selectedCards }
       }
+
+      const { board, deck: cards } = replaced
       return {
         ...state,
-        board: testDeck.board,
-        cards: testDeck.cards,
+        board,
+        cards,
         selectedCards: []
       }
+    }
 
     default:
       return state
