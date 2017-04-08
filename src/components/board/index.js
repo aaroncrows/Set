@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {
   dealBoard,
   toggleSelect,
-  validateSet
+  validateIfComplete
 } from '../../actions/boardActions'
 
 import Board from './board'
@@ -17,10 +17,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(dealBoard())
   },
   onCardClick(card) {
-    dispatch(toggleSelect(card))
-  },
-  validateSet() {
-    dispatch(validateSet())
+    dispatch(validateIfComplete(card))
   }
 })
 

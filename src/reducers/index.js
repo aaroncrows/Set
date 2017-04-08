@@ -49,6 +49,7 @@ const app = (state = initialState, action) => {
 
       return {
         ...state,
+        deck: newDeck,
         cards: newDeck.cards,
         board: newDeck.dealBoard()
       }
@@ -58,7 +59,7 @@ const app = (state = initialState, action) => {
       const isValidSet = Deck.validSet(state.selectedCards)
       // deal three new cards
       if (isValidSet) {
-        testDeck.replaceSet(state.selectedCards)
+        state.deck.replaceSet(state.selectedCards)
       }
       return {
         ...state,

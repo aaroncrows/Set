@@ -16,8 +16,19 @@ const toggleSelect = card => (
 const validateSet = () => (
  { type: VALIDATE_SET }
 )
+
+const validateIfComplete = card => {
+  return (dispatch, getState) => {
+    dispatch(toggleSelect(card))
+
+    if (getState().selectedCards.length < 3) return
+    dispatch(validateSet())
+  }
+}
+
 export {
   dealBoard,
   toggleSelect,
-  validateSet
+  validateSet,
+  validateIfComplete
 }
