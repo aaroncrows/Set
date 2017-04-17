@@ -3,49 +3,50 @@ import {
   CLEAR_SELECT,
   TOGGLE_SELECT,
   VALIDATE_SET,
-  DEAL_BOARD
+  DEAL_BOARD,
+  SYNC_BOARD
 } from '../constants'
 
 import {
   dealBoard,
   replaceSet,
-  validSet
+  validSet,
+  shallowEqual
 } from '../lib/deckHelpers'
-import Deck from '../models/deck'
-
-const testDeck = new Deck()
 
 const initialState = {
-  deck: testDeck,
-  board: testDeck.dealBoard(),
-  cards: testDeck.cards,
   rowSize: 4,
-  selectedCards: [],
+  selectedCards: []
 }
 
 const app = (state = initialState, action) => {
   switch (action.type) {
-    case TOGGLE_SELECT:
+    case TOGGLE_SELECT: {
       const selected = state.selectedCards
       const { card } = action
-      const toggleOn = !state.selectedCards.includes(card)
-      const selectedCards = toggleOn ? [...selected, card] : selected.filter(c => c !== card)
+      const toggleOn = !state.selectedCards.some(c => shallowEqual(c, card))
+      const selectedCards = toggleOn ? [...selected, card] : selected.filter(c => !shallowEqual(c, card))
       return {
         ...state,
         selectedCards
       }
+    }
 
-    case CLEAR_SELECT:
+    case CLEAR_SELECT: {
       return {
         ...state,
         selectedCards: []
       }
+    }
 
-    case 'SYNC_BOARD':
+    case SYNC_BOARD: {
+      const { selectedCards } = action
+
       return {
         ...state,
-        selectedCards: action.selected
+        selectedCards
       }
+    }
 
     case DEAL_BOARD: {
       const { deck: cards, board } = dealBoard(action.cards)
@@ -57,14 +58,14 @@ const app = (state = initialState, action) => {
     }
 
     case VALIDATE_SET: {
-      const { cards: currentCards, board: currentBoard, selectedCards} = state
+      const { cards: currentCards, board: currentBoard, selectedCards } = state
       const isValidSet = validSet(selectedCards)
       let replaced
       // deal three new cards
       if (isValidSet) {
-          replaced = replaceSet(currentCards, currentBoard, selectedCards)
+        replaced = replaceSet(currentCards, currentBoard, selectedCards)
       } else {
-        replaced = {board: currentBoard, deck: selectedCards }
+        replaced = { board: currentBoard, deck: selectedCards }
       }
 
       const { board, deck: cards } = replaced

@@ -1,15 +1,18 @@
-const socketMiddleware = sock => ({getState, dispatch}) => {
-  return next => action => {
+import io from 'socket.io-client'
+import { syncAndValidate, dealBoard } from '../actions/boardActions'
+
+const sock = io('http://localhost:8888/')
+
+const socketMiddleware = ({ getState, dispatch }) => {
+  sock.on('new', cards => dispatch(dealBoard(cards)))
+  sock.on('select', selectedCards => dispatch(syncAndValidate(selectedCards)))
+
+  return next => (action) => {
     const result = next(action)
-    sock.on('connect', () => {
-      //changechangechange
-    })
-    sock.on('select', selected => {
-      dispatch({type: 'SYNC_BOARD', selected})
-    })
-    //if (action.type === 'DEAL_BOARD') sock.emit('newGame')
-    if (action.type === 'TOGGLE_SELECT') sock.emit('set', getState().selectedCards)
+
+    if (action.type === 'TOGGLE_SELECT') return sock.emit('set', getState().selectedCards)
     return result
   }
 }
+
 export default socketMiddleware

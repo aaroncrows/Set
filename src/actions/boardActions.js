@@ -1,7 +1,8 @@
 import {
   DEAL_BOARD,
   TOGGLE_SELECT,
-  VALIDATE_SET
+  VALIDATE_SET,
+  SYNC_BOARD
 } from '../constants'
 
 // Board actions
@@ -17,18 +18,29 @@ const validateSet = () => (
  { type: VALIDATE_SET }
 )
 
-const validateIfComplete = card => {
-  return (dispatch, getState) => {
-    dispatch(toggleSelect(card))
+const syncBoard = selectedCards => (
+  { type: SYNC_BOARD, selectedCards }
+)
 
-    if (getState().selectedCards.length < 3) return
-    dispatch(validateSet())
-  }
+const validateIfComplete = card => (dispatch, getState) => {
+  dispatch(toggleSelect(card))
+
+  if (getState().selectedCards.length < 3) return
+  dispatch(validateSet())
 }
+
+const syncAndValidate = selected => (dispatch, getState) => {
+  dispatch(syncBoard(selected))
+
+  if (getState().selectedCards.length < 3) return
+  dispatch(validateSet())
+}
+
 
 export {
   dealBoard,
   toggleSelect,
   validateSet,
-  validateIfComplete
+  validateIfComplete,
+  syncAndValidate
 }

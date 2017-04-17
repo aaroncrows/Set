@@ -11,3 +11,5 @@ export const TOGGLE_SELECT = 'TOGGLE_SELECT'
 export const CLEAR_SELECT = 'CLEAR_SELECT'
 
 export const VALIDATE_SET = 'VALIDATE_SET'
+
+export const SYNC_BOARD = 'SYNC_BOARD'

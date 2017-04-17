@@ -1,3 +1,5 @@
+const shallowEqual = (a, b) => JSON.stringify(a) === JSON.stringify(b)
+
 const dealBoard = (deck) => {
   const rowSize = 4
   const board = Array(3)
@@ -15,7 +17,7 @@ const dealBoard = (deck) => {
 const replaceSet = (deck, board, set) => {
   deck = [...deck]
 
-  board = board.map(row => row.map( card => set.includes(card) ? deck.pop() : card))
+  board = board.map(row => row.map(card => set.every(c => !shallowEqual(card, c)) ? card : deck.pop()))
 
   return { deck, board }
 }
@@ -42,5 +44,6 @@ const validSet = (set) => {
 export {
   dealBoard,
   replaceSet,
-  validSet
+  validSet,
+  shallowEqual
 }
