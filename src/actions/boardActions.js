@@ -41,6 +41,7 @@ export {
   dealBoard,
   toggleSelect,
   validateSet,
+  syncBoard,
   validateIfComplete,
   syncAndValidate
 }

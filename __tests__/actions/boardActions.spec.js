@@ -2,13 +2,15 @@
 import {
   dealBoard,
   toggleSelect,
-  validateSet
+  validateSet,
+  syncBoard
 } from 'src/actions/boardActions'
 
 import {
   DEAL_BOARD,
   TOGGLE_SELECT,
-  VALIDATE_SET
+  VALIDATE_SET,
+  SYNC_BOARD
 } from 'src/constants'
 
 
@@ -33,3 +35,11 @@ test('validateSet', () => {
 
   expect(result).toEqual(expected)
 })
+
+test('syncBoard', () => {
+  const expected = { type: SYNC_BOARD, selectedCards: []}
+  const result = syncBoard([])
+
+  expect(result).toEqual(expected)
+})
+
