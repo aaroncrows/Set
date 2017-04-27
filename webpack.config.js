@@ -1,7 +1,7 @@
 const join = require('path').join
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const ReactRootPlugin = require('../html-webpack-react-root-plugin')
+const ReactRootPlugin = require('html-webpack-react-root-plugin')
 
 const paths = {
   entry: join(__dirname, '/src/index.js'),

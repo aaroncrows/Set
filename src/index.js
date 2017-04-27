@@ -11,7 +11,7 @@ import Board from './components/board'
 import './global-styles/main.scss'
 
 
-const store = createStore(app, applyMiddleware(socketMiddleware, thunk))
+const store = createStore(app, applyMiddleware(thunk, socketMiddleware))
 
 
 const Main = () => (
@@ -20,4 +20,4 @@ const Main = () => (
   </Provider>
 )
 
-render(<Main />, document.getElementById('react-root'))
+render(<Main />, document.getElementById('root'))

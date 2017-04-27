@@ -4,7 +4,11 @@ import {
   TOGGLE_SELECT,
   VALIDATE_SET,
   DEAL_BOARD,
-  SYNC_BOARD
+  SYNC_BOARD,
+  IS_CHOOSING,
+  CLEAR_SELECTION_TIMER,
+  START_SELECTION_TIMER,
+  DECREMENT_TIMER
 } from '../constants'
 
 import {
@@ -16,11 +20,17 @@ import {
 
 const initialState = {
   rowSize: 4,
-  selectedCards: []
+  selectedCards: [],
+  isChoosing: false,
+  setButtonDisabled: false,
+  setCountDown: 5
 }
 
+// TODO: Compose reducers
 const app = (state = initialState, action) => {
+  console.log('ACTION', action)
   switch (action.type) {
+    // Board Actions
     case TOGGLE_SELECT: {
       const selected = state.selectedCards
       const { card } = action
@@ -74,6 +84,40 @@ const app = (state = initialState, action) => {
         board,
         cards,
         selectedCards: []
+      }
+    }
+
+    // Button actions
+    case IS_CHOOSING: {
+      return {
+        ...state,
+        isChoosing: true
+      }
+    }
+
+    case CLEAR_SELECTION_TIMER: {
+      return {
+        ...state,
+        setButtonDisabled: false,
+        isChoosing: false,
+        selectedCards: [],
+        setCountDown: 5
+      }
+    }
+
+    case START_SELECTION_TIMER: {
+      return {
+        ...state,
+        setButtonDisabled: true
+      }
+    }
+
+    case DECREMENT_TIMER: {
+      const { setCountDown } = state
+      return {
+        ...state,
+        setCountDown: setCountDown - 1
+
       }
     }
 

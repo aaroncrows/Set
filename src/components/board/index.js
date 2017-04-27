@@ -10,7 +10,9 @@ import Board from './board'
 
 import './board.css'
 
-const mapStateToProps = ({ board, selectedCards }) => ({ board, selectedCards })
+const mapStateToProps = ({ board, selectedCards, isChoosing }) => (
+  { board, selectedCards, isChoosing }
+)
 
 const mapDispatchToProps = dispatch => ({
   dealBoard() {
