@@ -51,6 +51,7 @@ export {
   pauseSelection,
   pauseForSelect,
   chooseSet,
-  isChoosing
+  isChoosing,
+  decrementTimer
 }
 

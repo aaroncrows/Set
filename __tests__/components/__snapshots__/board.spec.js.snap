@@ -1,23 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`container render correctly 1`] = `
-<ul
-  className="board"
->
-  <ul>
-    <li
-      className="card"
-      onClick={[Function]}
-    >
-      <span
-        className="icons-one color-one icon-leaf"
-      />
-      <span
-        className="pattern"
+<div>
+  <nav>
+    <nav>
+      <button
+        disabled={undefined}
+        onClick={[Function]}
       >
-        solid
-      </span>
-    </li>
+        SET
+      </button>
+      <h1 />
+    </nav>
+  </nav>
+  <ul
+    className="board"
+  >
+    <ul>
+      <li
+        className="card"
+        onClick={[Function]}
+      >
+        <span
+          className="icons-one color-one icon-leaf"
+        />
+        <span
+          className="pattern"
+        >
+          solid
+        </span>
+      </li>
+    </ul>
   </ul>
-</ul>
+</div>
 `;
