@@ -50,8 +50,8 @@ export {
   clearTimer,
   pauseSelection,
   pauseForSelect,
+  decrementTimer,
   chooseSet,
   isChoosing,
-  decrementTimer
 }
 
