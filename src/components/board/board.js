@@ -3,12 +3,11 @@ import uid from '../../lib/uid'
 
 import SetButton from '../setButton'
 import Card from '../card/card'
-
+import Users from '../users'
 const noop = () => {}
 
 const Board = ({ board, onCardClick, selectedCards, isChoosing }) => (
   <div>
-    <nav><SetButton /></nav>
     <ul className="board">
       {
         board && board.map(row => (
@@ -23,6 +22,7 @@ const Board = ({ board, onCardClick, selectedCards, isChoosing }) => (
           </ul>))
       }
     </ul>
+    <Users />
   </div>
 )
 
