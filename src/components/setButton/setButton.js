@@ -1,10 +1,8 @@
 import React from 'react'
+import './setButton.scss'
 
-const SetButton = ({ onClick, setButtonDisabled, setCountDown }) => (
-  <nav>
-    <button onClick={onClick} disabled={setButtonDisabled}>SET</button>
-    <h1>{setCountDown}</h1>
-  </nav>
+const SetButton = ({ onClick, setButtonDisabled }) => (
+    <button className="setButton" onClick={onClick} disabled={setButtonDisabled}>SET</button>
 )
 
 export default SetButton

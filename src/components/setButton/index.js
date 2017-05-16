@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import button from './setButton'
 
 import { chooseSet } from '../../actions/setButtonActions'
-const mapStateToProps = ({ setButtonDisabled, setCountDown }) => ({ setButtonDisabled, setCountDown })
+const mapStateToProps = ({ setButtonDisabled }) => ({ setButtonDisabled })
 
 const mapDispatchToProps = (dispatch) => ({
   onClick: () => dispatch(chooseSet())
