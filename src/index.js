@@ -7,6 +7,7 @@ import thunk from 'redux-thunk'
 import app from './reducers'
 import socketMiddleware from './middleware/socket'
 import Board from './components/board'
+import Layout from './components/layout'
 
 import './global-styles/main.scss'
 
@@ -16,7 +17,7 @@ const store = createStore(app, applyMiddleware(thunk, socketMiddleware))
 
 const Main = () => (
   <Provider store={store}>
-    <Board />
+    <Layout />
   </Provider>
 )
 
