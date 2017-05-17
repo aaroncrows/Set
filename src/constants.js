@@ -25,3 +25,7 @@ export const PAUSE_SELECTION = 'PAUSE_SELECTION'
 export const IS_CHOOSING = 'IS_CHOOSING'
 
 export const DECREMENT_TIMER = 'DECREMENT_TIMER'
+
+// New Game Actions
+
+export const START_NEW_GAME = 'START_NEW_GAME'
