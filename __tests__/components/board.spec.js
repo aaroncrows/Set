@@ -10,7 +10,12 @@ let testState
 beforeEach(() => {
   testState = {
     selectedCards: [],
-    board: [[{ shape: 'oval', pattern: 'solid', color: 'one', count: 1 }]]
+    deck: {
+      board: [[{ shape: 'oval', pattern: 'solid', color: 'one', count: 1 }]]
+    },
+    disabled: {
+      cardSelectDisabled: true
+    }
   }
 })
 
