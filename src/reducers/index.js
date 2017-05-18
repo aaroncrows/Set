@@ -22,30 +22,7 @@ import {
   shallowEqual
 } from '../lib/deckHelpers'
 
-const initialState = {
-  defaultState: {
-    timer: 5,
-    games: []
-  }
-}
 
-// TODO: Compose reducers
-const defaultState = (state = initialState.defaultState, action) => {
-  console.log('ACTION', action)
-  switch (action.type) {
-    // Board Actions
-    case NEW_GAME_CREATED: {
-      const { id } = action
-      return  {
-        ...state,
-        games: [...state.games, id]
-      }
-    }
-
-    default:
-      return state
-  }
-}
 const timer = (state = 5, action) => {
   switch(action.type) {
     case CLEAR_SELECTION_TIMER: {
@@ -142,12 +119,27 @@ const disabled = (state = { cardSelectDisabled: true, setButtonDisabled: false }
   }
 }
 
+const game = (state = { games: [], currentGame: null }, action) => {
+  switch(action.type) {
+    case NEW_GAME_CREATED: {
+      const { id } = action
+      return  {
+        ...state,
+        games: [...state.games, id]
+      }
+    }
+
+    default:
+      return state
+  }
+}
+
 const app = combineReducers({
-  defaultState,
   deck,
   disabled,
   timer,
-  selectedCards
+  selectedCards,
+  game
 })
 
 export default app
