@@ -1,14 +1,18 @@
 /* eslint no-case-declarations: 0 */
+import { combineReducers } from 'redux'
+
 import {
   CLEAR_SELECT,
   TOGGLE_SELECT,
   VALIDATE_SET,
   DEAL_BOARD,
+  REPLACE_CARDS,
   SYNC_BOARD,
   IS_CHOOSING,
   CLEAR_SELECTION_TIMER,
   START_SELECTION_TIMER,
-  DECREMENT_TIMER
+  DECREMENT_TIMER,
+  NEW_GAME_CREATED
 } from '../constants'
 
 import {
@@ -19,44 +23,21 @@ import {
 } from '../lib/deckHelpers'
 
 const initialState = {
-  rowSize: 4,
-  selectedCards: [],
-  isChoosing: false,
-  setButtonDisabled: false,
-  setCountDown: 5
+  defaultState: {
+    rowSize: 4,
+    isChoosing: false,
+    setButtonDisabled: false,
+    setCountDown: 5,
+    games: []
+  },
+  selectedCards: []
 }
 
 // TODO: Compose reducers
-const app = (state = initialState, action) => {
+const defaultState = (state = initialState.defaultState, action) => {
   console.log('ACTION', action)
   switch (action.type) {
     // Board Actions
-    case TOGGLE_SELECT: {
-      const selected = state.selectedCards
-      const { card } = action
-      const toggleOn = !state.selectedCards.some(c => shallowEqual(c, card))
-      const selectedCards = toggleOn ? [...selected, card] : selected.filter(c => !shallowEqual(c, card))
-      return {
-        ...state,
-        selectedCards
-      }
-    }
-
-    case CLEAR_SELECT: {
-      return {
-        ...state,
-        selectedCards: []
-      }
-    }
-
-    case SYNC_BOARD: {
-      const { selectedCards } = action
-
-      return {
-        ...state,
-        selectedCards
-      }
-    }
 
     case DEAL_BOARD: {
       const { deck: cards, board } = dealBoard(action.cards)
@@ -64,6 +45,19 @@ const app = (state = initialState, action) => {
         ...state,
         cards,
         board
+      }
+    }
+
+    case REPLACE_CARDS: {
+      const { cards: currentCards, board: currentBoard } = state
+      const { selectedCards } = action
+
+      const { board, deck: cards } = replaceSet(currentCards, currentBoard, selectedCards)
+
+      return {
+        ...state,
+        board,
+        cards
       }
     }
 
@@ -100,7 +94,6 @@ const app = (state = initialState, action) => {
         ...state,
         setButtonDisabled: false,
         isChoosing: false,
-        selectedCards: [],
         setCountDown: 5
       }
     }
@@ -117,7 +110,14 @@ const app = (state = initialState, action) => {
       return {
         ...state,
         setCountDown: setCountDown - 1
+      }
+    }
 
+    case NEW_GAME_CREATED: {
+      const { id } = action
+      return  {
+        ...state,
+        games: [...state.games, id]
       }
     }
 
@@ -125,5 +125,34 @@ const app = (state = initialState, action) => {
       return state
   }
 }
+
+const selectedCards = (state = [], action) => {
+  switch (action.type) {
+    case TOGGLE_SELECT: {
+      const selected = state
+      const { card } = action
+      const toggleOn = !state.some(c => shallowEqual(c, card))
+      const selectedCards = toggleOn ? [...selected, card] : selected.filter(c => !shallowEqual(c, card))
+      return selectedCards
+    }
+
+    case CLEAR_SELECT: {
+      return []
+    }
+
+    case SYNC_BOARD: {
+      const { selectedCards } = action
+
+      return selectedCards
+    }
+    default:
+      return state
+  }
+}
+
+const app = combineReducers({
+  defaultState,
+  selectedCards
+})
 
 export default app
