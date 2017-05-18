@@ -10,8 +10,8 @@ import Board from './board'
 
 import './board.css'
 
-const mapStateToProps = ({ board, selectedCards, isChoosing }) => (
-  { board, selectedCards, isChoosing }
+const mapStateToProps = ({ defaultState: { board }, disabled: { cardSelectDisabled }, selectedCards }) => (
+  { board, selectedCards, cardSelectDisabled }
 )
 
 const mapDispatchToProps = dispatch => ({

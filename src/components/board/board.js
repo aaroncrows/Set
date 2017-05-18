@@ -6,7 +6,7 @@ import Card from '../card/card'
 import Users from '../users'
 const noop = () => {}
 
-const Board = ({ board, onCardClick, selectedCards, isChoosing }) => (
+const Board = ({ board, onCardClick, selectedCards, cardSelectDisabled }) => (
   <ul className="board">
     {
       board && board.map(row => (
@@ -16,7 +16,7 @@ const Board = ({ board, onCardClick, selectedCards, isChoosing }) => (
             card={c}
             selected={!selectedCards.every(sel => JSON.stringify(sel) !== JSON.stringify(c))}
             // pass noop as clickHandler if Set timer not going
-            onCardClick={isChoosing ? onCardClick : noop}
+            onCardClick={!cardSelectDisabled ? onCardClick : noop}
           />)}
         </ul>))
     }

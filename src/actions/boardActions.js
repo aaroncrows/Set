@@ -1,7 +1,6 @@
 import {
   DEAL_BOARD,
   TOGGLE_SELECT,
-  VALIDATE_SET,
   SYNC_BOARD,
   CLEAR_SELECT,
   REPLACE_CARDS
@@ -22,10 +21,6 @@ const replaceCards = selectedCards => (
 
 const toggleSelect = card => (
   { type: TOGGLE_SELECT, card }
-)
-
-const validateSet = () => (
- { type: VALIDATE_SET }
 )
 
 const syncBoard = selectedCards => (
@@ -51,7 +46,9 @@ const syncAndValidate = selected => (dispatch, getState) => {
   dispatch(syncBoard(selected))
 
   if (getState().selectedCards.length < 3) return
-  dispatch(validateSet())
+  if (validSet(selectedCards)) dispatch(replaceCards(selectedCards))
+
+  dispatch(clearSelect())
 }
 
 
@@ -59,7 +56,6 @@ export {
   dealBoard,
   replaceCards,
   toggleSelect,
-  validateSet,
   syncBoard,
   validateIfComplete,
   syncAndValidate,

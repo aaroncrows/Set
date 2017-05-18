@@ -4,13 +4,14 @@ import { combineReducers } from 'redux'
 import {
   CLEAR_SELECT,
   TOGGLE_SELECT,
-  VALIDATE_SET,
   DEAL_BOARD,
   REPLACE_CARDS,
   SYNC_BOARD,
-  IS_CHOOSING,
+  ENABLE_CARD_SELECT,
   CLEAR_SELECTION_TIMER,
   START_SELECTION_TIMER,
+  DISABLE_SET_BUTTON,
+  RESET_DISABLED,
   DECREMENT_TIMER,
   NEW_GAME_CREATED
 } from '../constants'
@@ -18,14 +19,13 @@ import {
 import {
   dealBoard,
   replaceSet,
-  validSet,
   shallowEqual
 } from '../lib/deckHelpers'
 
 const initialState = {
   defaultState: {
     rowSize: 4,
-    isChoosing: false,
+    cardSelectDisabled: false,
     setButtonDisabled: false,
     setCountDown: 5,
     games: []
@@ -61,44 +61,30 @@ const defaultState = (state = initialState.defaultState, action) => {
       }
     }
 
-    case VALIDATE_SET: {
-      const { cards: currentCards, board: currentBoard, selectedCards } = state
-      const isValidSet = validSet(selectedCards)
-      let replaced
-      // deal three new cards
-      if (isValidSet) {
-        replaced = replaceSet(currentCards, currentBoard, selectedCards)
-      } else {
-        replaced = { board: currentBoard, deck: selectedCards }
-      }
-
-      const { board, deck: cards } = replaced
-      return {
-        ...state,
-        board,
-        cards,
-        selectedCards: []
-      }
-    }
-
     // Button actions
-    case IS_CHOOSING: {
+    case ENABLE_CARD_SELECT: {
       return {
         ...state,
-        isChoosing: true
+        cardSelectDisabled: true
       }
     }
 
     case CLEAR_SELECTION_TIMER: {
       return {
         ...state,
-        setButtonDisabled: false,
-        isChoosing: false,
         setCountDown: 5
       }
     }
 
-    case START_SELECTION_TIMER: {
+    case RESET_DISABLED: {
+      return {
+        ...state,
+        setButtonDisabled: false,
+        cardSelectDisabled: false
+      }
+    }
+
+    case DISABLE_SET_BUTTON: {
       return {
         ...state,
         setButtonDisabled: true
@@ -150,8 +136,37 @@ const selectedCards = (state = [], action) => {
   }
 }
 
+const disabled = (state = { cardSelectDisabled: true, setButtonDisabled: false }, action) => {
+  switch(action.type) {
+    case ENABLE_CARD_SELECT: {
+      return {
+        ...state,
+        cardSelectDisabled: false
+      }
+    }
+
+    case RESET_DISABLED: {
+      return {
+        setButtonDisabled: false,
+        cardSelectDisabled: true
+      }
+    }
+
+    case DISABLE_SET_BUTTON: {
+      return {
+        ...state,
+        setButtonDisabled: true
+      }
+    }
+
+    default:
+      return state
+  }
+}
+
 const app = combineReducers({
   defaultState,
+  disabled,
   selectedCards
 })
 

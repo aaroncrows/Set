@@ -1,10 +1,15 @@
 import {
   START_SELECTION_TIMER,
   CLEAR_SELECTION_TIMER,
-  PAUSE_SELECTION,
-  IS_CHOOSING,
-  DECREMENT_TIMER
+  DISABLE_SET_BUTTON,
+  ENABLE_CARD_SELECT,
+  DECREMENT_TIMER,
+  RESET_DISABLED
 } from '../constants'
+
+import {
+  clearSelect
+} from './boardActions'
 
 const startTimer = () => (
   { type: START_SELECTION_TIMER }
@@ -14,44 +19,50 @@ const clearTimer = () => (
   { type: CLEAR_SELECTION_TIMER }
 )
 
-const pauseSelection = () => (
-  { type: PAUSE_SELECTION }
+const disableSetButton = () => (
+  { type: DISABLE_SET_BUTTON }
 )
 
-const isChoosing = () => (
-  { type: IS_CHOOSING }
+const enableCardSelect = () => (
+  { type: ENABLE_CARD_SELECT }
 )
 
 const decrementTimer = () => (
   { type: DECREMENT_TIMER }
 )
 
+const resetDisabled = () => (
+  { type: RESET_DISABLED }
+)
+
 const pauseForSelect = () => (dispatch) => {
   let intervalCount = 0
-  dispatch(pauseSelection())
-  dispatch(startTimer())
+  dispatch(disableSetButton())
   const selectTimer = setInterval(() => {
     intervalCount += 1
     dispatch(decrementTimer())
 
     if (intervalCount < 5) return
     clearInterval(selectTimer)
+    dispatch(resetDisabled())
+    dispatch(clearSelect())
     dispatch(clearTimer())
   }, 1000)
 }
 
 const chooseSet = () => (dispatch) => {
-  dispatch(isChoosing())
+  dispatch(enableCardSelect())
   dispatch(pauseForSelect())
 }
 
 export {
   startTimer,
   clearTimer,
-  pauseSelection,
+  disableSetButton,
   pauseForSelect,
   decrementTimer,
   chooseSet,
-  isChoosing,
+  enableCardSelect,
+  resetDisabled
 }
 
