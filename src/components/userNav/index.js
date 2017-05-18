@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import userNav from './userNav'
 
-const mapStateToProps = ({ setCountDown }) => ( { setCountDown })
+const mapStateToProps = ({ timer }) => ( { timer })
 
 const UserNav = connect(mapStateToProps, null)(userNav)
 

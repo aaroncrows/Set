@@ -24,13 +24,9 @@ import {
 
 const initialState = {
   defaultState: {
-    rowSize: 4,
-    cardSelectDisabled: false,
-    setButtonDisabled: false,
-    setCountDown: 5,
+    timer: 5,
     games: []
-  },
-  selectedCards: []
+  }
 }
 
 // TODO: Compose reducers
@@ -61,41 +57,18 @@ const defaultState = (state = initialState.defaultState, action) => {
       }
     }
 
-    // Button actions
-    case ENABLE_CARD_SELECT: {
-      return {
-        ...state,
-        cardSelectDisabled: true
-      }
-    }
-
     case CLEAR_SELECTION_TIMER: {
       return {
         ...state,
-        setCountDown: 5
-      }
-    }
-
-    case RESET_DISABLED: {
-      return {
-        ...state,
-        setButtonDisabled: false,
-        cardSelectDisabled: false
-      }
-    }
-
-    case DISABLE_SET_BUTTON: {
-      return {
-        ...state,
-        setButtonDisabled: true
+        timer: 5
       }
     }
 
     case DECREMENT_TIMER: {
-      const { setCountDown } = state
+      const { timer } = state
       return {
         ...state,
-        setCountDown: setCountDown - 1
+        timer: timer - 1
       }
     }
 
@@ -106,6 +79,50 @@ const defaultState = (state = initialState.defaultState, action) => {
         games: [...state.games, id]
       }
     }
+
+    default:
+      return state
+  }
+}
+const timer = (state = 5, action) => {
+  switch(action.type) {
+    case CLEAR_SELECTION_TIMER: {
+      return 5
+    }
+
+    case DECREMENT_TIMER: {
+      return state - 1
+    }
+
+    default:
+      return state
+  }
+}
+
+const deck = (state = {}, action) => {
+  switch(action.type) {
+    case DEAL_BOARD: {
+      const { deck: cards, board } = dealBoard(action.cards)
+      return {
+        ...state,
+        cards,
+        board
+      }
+    }
+
+    case REPLACE_CARDS: {
+      const { cards: currentCards, board: currentBoard } = state
+      const { selectedCards } = action
+
+      const { board, deck: cards } = replaceSet(currentCards, currentBoard, selectedCards)
+
+      return {
+        ...state,
+        board,
+        cards
+      }
+    }
+
 
     default:
       return state
@@ -167,6 +184,7 @@ const disabled = (state = { cardSelectDisabled: true, setButtonDisabled: false }
 const app = combineReducers({
   defaultState,
   disabled,
+  timer,
   selectedCards
 })
 
