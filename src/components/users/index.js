@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import UserNav from '../userNav'
 import uid from '../../lib/uid'

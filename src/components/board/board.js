@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import uid from '../../lib/uid'
 
-import SetButton from '../setButton'
 import Card from '../card/card'
-import Users from '../users'
+
 const noop = () => {}
 
 const Board = ({ board, onCardClick, selectedCards, cardSelectDisabled }) => (

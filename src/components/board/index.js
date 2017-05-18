@@ -1,8 +1,6 @@
 import { connect } from 'react-redux'
 
 import {
-  dealBoard,
-  toggleSelect,
   validateIfComplete
 } from '../../actions/boardActions'
 
@@ -15,9 +13,6 @@ const mapStateToProps = ({ deck: { board }, disabled: { cardSelectDisabled }, se
 )
 
 const mapDispatchToProps = dispatch => ({
-  dealBoard() {
-    dispatch(dealBoard())
-  },
   onCardClick(card) {
     dispatch(validateIfComplete(card))
   }

@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import SetButton from '../setButton'
 
-import styles from './userNav.scss'
+import './userNav.scss'
 
 const UserNav = ({ name, timer }) => (
   <nav className="userNav">

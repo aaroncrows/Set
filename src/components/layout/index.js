@@ -2,7 +2,7 @@ import React from 'react'
 
 import Board from '../board'
 import Users from '../users'
-import NewGameForm from '../NewGameForm'
+import NewGameForm from '../newGameForm'
 
 const Layout = () => (
   <div>
@@ -13,4 +13,3 @@ const Layout = () => (
 )
 
 export default Layout
-
