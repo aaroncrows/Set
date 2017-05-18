@@ -10,9 +10,7 @@
     "serve": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --history-api-fallback"
   },
   "jest": {
-    "modulePathIgnorePatterns": [
-      "lib"
-    ],
+    "testMatch": ["<rootDir>/__tests__/**/*.spec.js"],
     "moduleNameMapper": {
       "\\.s?css$": "identity-obj-proxy"
     },

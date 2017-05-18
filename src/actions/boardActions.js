@@ -44,7 +44,7 @@ const validateIfComplete = card => (dispatch, getState) => {
 
 const syncAndValidate = selected => (dispatch, getState) => {
   dispatch(syncBoard(selected))
-  const selectedCards = getState().selectedCards()
+  const { selectedCards } = getState()
 
   if (selectedCards.length < 3) return
   if (validSet(selectedCards)) dispatch(replaceCards(selectedCards))

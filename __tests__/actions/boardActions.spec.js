@@ -3,14 +3,16 @@ import {
   dealBoard,
   toggleSelect,
   validateSet,
-  syncBoard
+  syncBoard,
+  replaceCards
 } from 'src/actions/boardActions'
 
 import {
   DEAL_BOARD,
   TOGGLE_SELECT,
   VALIDATE_SET,
-  SYNC_BOARD
+  SYNC_BOARD,
+  REPLACE_CARDS
 } from 'src/constants'
 
 
@@ -21,17 +23,17 @@ test('dealBoard', () => {
   expect(result).toEqual(expected)
 })
 
-test('toggleSelect', () => {
-  const card = { shape: 'test' }
-  const expected = { type: TOGGLE_SELECT, card }
-  const result = toggleSelect(card)
+test('replaceCards', () => {
+  const expected = { type: REPLACE_CARDS, selectedCards: ['test']}
+  const result = replaceCards(['test'])
 
   expect(result).toEqual(expected)
 })
 
-test('validateSet', () => {
-  const expected = { type: VALIDATE_SET }
-  const result = validateSet()
+test('toggleSelect', () => {
+  const card = { shape: 'test' }
+  const expected = { type: TOGGLE_SELECT, card }
+  const result = toggleSelect(card)
 
   expect(result).toEqual(expected)
 })

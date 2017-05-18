@@ -4,7 +4,7 @@ import {
 } from 'src/actions/setButtonActions'
 
 import {
-  IS_CHOOSING
+  ENABLE_CARD_SELECT
 } from 'src/constants'
 
 let mockDispatch
@@ -20,7 +20,7 @@ test('chooseSet', () => {
   const action = firstArgSet[0]
   const func = secondArgSet[0]
 
-  expect(action).toEqual({type: IS_CHOOSING})
+  expect(action).toEqual({ type: ENABLE_CARD_SELECT })
   expect(func.toString()).toEqual(pauseForSelect().toString())
 })
 
@@ -31,7 +31,7 @@ test('pauseForSelect', () => {
   global.clearInterval = () => {}
 
   pauseForSelect()(mockDispatch)
-  expect(mockDispatch).toHaveBeenCalledTimes(8)
+  expect(mockDispatch).toHaveBeenCalledTimes(9)
 })
 
 

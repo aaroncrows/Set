@@ -1,7 +1,7 @@
 import React from 'react'
 import { create } from 'react-test-renderer'
 import { Provider } from 'react-redux'
-import mockStore from '../lib/mockStore'
+import mockStore from '../__mocks__/mockStore'
 
 // Container
 import BoardContainer from 'src/components/board'
