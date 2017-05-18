@@ -10,7 +10,7 @@ import Board from './board'
 
 import './board.css'
 
-const mapStateToProps = ({ defaultState: { board }, disabled: { cardSelectDisabled }, selectedCards }) => (
+const mapStateToProps = ({ deck: { board }, disabled: { cardSelectDisabled }, selectedCards }) => (
   { board, selectedCards, cardSelectDisabled }
 )
 

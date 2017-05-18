@@ -34,44 +34,6 @@ const defaultState = (state = initialState.defaultState, action) => {
   console.log('ACTION', action)
   switch (action.type) {
     // Board Actions
-
-    case DEAL_BOARD: {
-      const { deck: cards, board } = dealBoard(action.cards)
-      return {
-        ...state,
-        cards,
-        board
-      }
-    }
-
-    case REPLACE_CARDS: {
-      const { cards: currentCards, board: currentBoard } = state
-      const { selectedCards } = action
-
-      const { board, deck: cards } = replaceSet(currentCards, currentBoard, selectedCards)
-
-      return {
-        ...state,
-        board,
-        cards
-      }
-    }
-
-    case CLEAR_SELECTION_TIMER: {
-      return {
-        ...state,
-        timer: 5
-      }
-    }
-
-    case DECREMENT_TIMER: {
-      const { timer } = state
-      return {
-        ...state,
-        timer: timer - 1
-      }
-    }
-
     case NEW_GAME_CREATED: {
       const { id } = action
       return  {
@@ -122,7 +84,6 @@ const deck = (state = {}, action) => {
         cards
       }
     }
-
 
     default:
       return state
@@ -183,6 +144,7 @@ const disabled = (state = { cardSelectDisabled: true, setButtonDisabled: false }
 
 const app = combineReducers({
   defaultState,
+  deck,
   disabled,
   timer,
   selectedCards
