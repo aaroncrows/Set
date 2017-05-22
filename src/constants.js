@@ -35,3 +35,5 @@ export const RESET_DISABLED = 'RESET_DISABLED'
 export const START_NEW_GAME = 'START_NEW_GAME'
 
 export const NEW_GAME_CREATED = 'NEW_GAME_CREATED'
+
+export const JOIN_GAME = 'JOIN_GAME'

@@ -4,12 +4,12 @@ import uid from '../../lib/uid'
 
 import './gameList.scss'
 
-const GameList = ({ games }) => (
+const GameList = ({ games, onClick }) => (
   <ul className="gameList">
     <li>
       GAMESSSS
     </li>
-    { games.map(game => <li key={uid()}>{game}</li>)}
+    { games.map(game => <li onClick={() => onClick(game)} key={uid()}>{game}</li>)}
   </ul>
 )
 

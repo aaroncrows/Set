@@ -1,5 +1,6 @@
 import {
-  NEW_GAME_CREATED
+  NEW_GAME_CREATED,
+  JOIN_GAME
 } from '../constants'
 
 const game = (state = { games: [], currentGame: null }, action) => {
@@ -9,6 +10,15 @@ const game = (state = { games: [], currentGame: null }, action) => {
       return {
         ...state,
         games: [...state.games, id]
+      }
+    }
+
+    case JOIN_GAME: {
+      const { id } = action
+
+      return {
+        ...state,
+        currentGame: id
       }
     }
 

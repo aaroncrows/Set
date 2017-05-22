@@ -14,9 +14,17 @@ const socketMiddleware = ({ getState, dispatch }) => {
       dispatch(dealBoard(cards))
       dispatch(newGameCreated(id))
     })
+
+    socket.on('gameCreated', (id) => {
+      dispatch(newGameCreated(id))
+    })
+
+    socket.on('joined', ({ cards }) => {
+      dispatch(dealBoard(cards))
+    })
+
     socket.on('select', selectedCards => dispatch(syncAndValidate(selectedCards)))
     socket.on('pauseForSet', () => dispatch(pauseForSelect()))
-    socket.on('roomTest', payload => {console.log(payload)})
   }
 
   initializeSocket()
@@ -33,6 +41,7 @@ const socketMiddleware = ({ getState, dispatch }) => {
       if (action.type === 'START_NEW_GAME') socket.emit('newGame', action.userName)
       if (action.type === 'TOGGLE_SELECT') return socket.emit('set', getState().selectedCards)
       if (action.type === 'IS_CHOOSING') socket.emit('choosingSet')
+      if (action.type === 'JOIN_GAME') socket.emit('joinGame', action.id)
     }
     return result
   }
