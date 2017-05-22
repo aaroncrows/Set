@@ -3,10 +3,10 @@ import {
 } from '../constants'
 
 const game = (state = { games: [], currentGame: null }, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case NEW_GAME_CREATED: {
       const { id } = action
-      return  {
+      return {
         ...state,
         games: [...state.games, id]
       }
