@@ -4,7 +4,7 @@ import {
 } from '../constants'
 
 const timer = (state = 5, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case CLEAR_SELECTION_TIMER: {
       return 5
     }

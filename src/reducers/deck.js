@@ -9,7 +9,7 @@ import {
 } from '../lib/deckHelpers'
 
 const deck = (state = {}, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case DEAL_BOARD: {
       const { deck: cards, board } = dealBoard(action.cards)
       return {

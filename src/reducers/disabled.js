@@ -5,7 +5,7 @@ import {
 } from '../constants'
 
 const disabled = (state = { cardSelectDisabled: true, setButtonDisabled: false }, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ENABLE_CARD_SELECT: {
       return {
         ...state,

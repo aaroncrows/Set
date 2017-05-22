@@ -22,9 +22,9 @@ const selectedCards = (state = [], action) => {
     }
 
     case SYNC_BOARD: {
-      const { selectedCards } = action
+      const { selectedCards: cards } = action
 
-      return selectedCards
+      return cards
     }
     default:
       return state
