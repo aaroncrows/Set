@@ -7,10 +7,6 @@ import GameList from '../gameList'
 
 const Layout = () => (
   <div>
-    <NewGameForm />
-    <Board />
-    <GameList />
-    <Users />
   </div>
 )
 

@@ -37,3 +37,11 @@ export const START_NEW_GAME = 'START_NEW_GAME'
 export const NEW_GAME_CREATED = 'NEW_GAME_CREATED'
 
 export const JOIN_GAME = 'JOIN_GAME'
+
+// User Actions
+
+export const SIGN_IN = 'SIGN_IN'
+
+export const SIGN_OUT = 'SIGN_OUT'
+
+export const USER_JOINED = 'USER_JOINED'

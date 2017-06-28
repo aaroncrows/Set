@@ -3,7 +3,7 @@ import {
   JOIN_GAME
 } from '../constants'
 
-const game = (state = { games: [], currentGame: null }, action) => {
+const game = (state = { games: [], currentGame: null, currentUsers: [] }, action) => {
   switch (action.type) {
     case NEW_GAME_CREATED: {
       const { id } = action
